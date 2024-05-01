@@ -1,0 +1,17 @@
+service: todo-app
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: eu-west-2
+  environment:
+    MONGO_URI: ${env:MONGO_URI}
+
+functions:
+  graphql:
+    handler: lambda.handler
+    events:
+      - http:
+          path: graphql
+          method: post
+          cors: true
